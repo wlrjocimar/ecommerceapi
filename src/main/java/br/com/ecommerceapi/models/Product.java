@@ -41,6 +41,12 @@ public class Product {
 	@Column(name="color")
 	private List<String> colors;
 	
+	@ElementCollection
+	@CollectionTable(name="tb_product_sizes",
+	joinColumns = @JoinColumn(name="product_id"))
+	@Column(name="size")
+	private List<String> sizes;
+	
 	
 	@ElementCollection(fetch = FetchType.EAGER)
 	@CollectionTable(name="tb_product_images",
