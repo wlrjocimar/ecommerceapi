@@ -23,7 +23,7 @@ jobs:
 
       # 3️⃣ Gera o artefato com Maven
       - name: Build JAR
-        run: mvn clean package -Dspring.profiles.active=prod -DskipTests
+        run: mvn clean package -Dspring.profiles.active=prod
 
       # 4️⃣ Copia o artefato gerado para o servidor (via SCP)
       - name: Copy JAR to production server
