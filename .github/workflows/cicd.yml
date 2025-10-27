@@ -33,7 +33,7 @@ jobs:
           username: root
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           source: "target/ecommerceapi-0.0.1-SNAPSHOT.jar"
-          target: "/dados/webapps/ecommerceapi/target/"
+          target: "/dados/webapps/ecommerceapi/"
 
       # 5️⃣ Reinicia o serviço no servidor remoto
       - name: Restart service on server
