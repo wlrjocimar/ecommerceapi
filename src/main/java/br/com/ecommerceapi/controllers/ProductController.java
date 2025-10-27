@@ -1,5 +1,6 @@
 package br.com.ecommerceapi.controllers;
 
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,10 +8,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import br.com.ecommerceapi.models.Product;
+import br.com.ecommerceapi.repositories.ProductRepository;
 import br.com.ecommerceapi.services.ProductService;
 
 @RestController
@@ -30,6 +35,22 @@ public class ProductController {
 		
 		return ResponseEntity.ok().body(products);
 		
+		
+	}
+	
+	
+	@PostMapping
+	public ResponseEntity<Product> newProduct(@RequestBody Product product){
+		
+		Product savedProduct = productService.newProduct(product);
+		
+		URI location = ServletUriComponentsBuilder
+				.fromCurrentRequest()
+				.path("/{id}")
+				.buildAndExpand(savedProduct.getId())
+				.toUri();
+		
+		return ResponseEntity.created(location).body(savedProduct);
 		
 	}
 

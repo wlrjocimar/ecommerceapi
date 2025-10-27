@@ -1,0 +1,47 @@
+name: Build and Deploy to Production
+
+on:
+  push:
+    branches:
+      - main   # dispara o deploy ao fazer push no branch principal
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1️⃣ Clona o repositório
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # 2️⃣ Configura o Java
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      # 3️⃣ Gera o artefato com Maven
+      - name: Build JAR
+        run: mvn clean package -Dspring.profiles.active=prod -DskipTests
+
+      # 4️⃣ Copia o artefato gerado para o servidor (via SCP)
+      - name: Copy JAR to production server
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: flexybot.com.br
+          username: root
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          source: "target/ecommerceapi-0.0.1-SNAPSHOT.jar"
+          target: "/dados/webapps/ecommerceapi/target/"
+
+      # 5️⃣ Reinicia o serviço no servidor remoto
+      - name: Restart service on server
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: flexybot.com.br
+          username: root
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            systemctl restart ecommerceapi.service
+            systemctl status ecommerceapi.service --no-pager

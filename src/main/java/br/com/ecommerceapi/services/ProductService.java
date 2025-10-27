@@ -30,6 +30,19 @@ public class ProductService {
 		
 		
 	}
+
+	public Product newProduct(Product product) {
+		
+		try {
+			
+			product.setId(null);
+			return productRepository.save(product);
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			throw e;
+		}
+	}
 	
 	
 	
