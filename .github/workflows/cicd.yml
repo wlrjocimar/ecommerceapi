@@ -43,5 +43,5 @@ jobs:
           username: root
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            systemctl restart ecommerceapi.service
-            systemctl status ecommerceapi.service --no-pager
+            systemctl restart ecommerceApi.service
+            systemctl status ecommerceApi.service --no-pager
