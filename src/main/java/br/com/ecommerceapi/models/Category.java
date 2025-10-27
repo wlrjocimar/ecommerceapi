@@ -21,6 +21,8 @@ public class Category {
 	private String name;
 	@Column(name = "slug")
 	private String slug;
+	@Column(name="icon")
+	private String icon;
 	
 
 }
