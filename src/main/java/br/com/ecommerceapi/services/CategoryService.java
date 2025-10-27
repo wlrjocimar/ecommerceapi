@@ -30,4 +30,19 @@ public class CategoryService {
 		
 	}
 
+	public Category newCategory(Category category) {
+		
+		try {
+			category.setId(null);
+			Category savedCategory = categoryRepository.save(category);
+			return savedCategory;
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			throw e;
+		}
+	}
+
+	
+
 }
