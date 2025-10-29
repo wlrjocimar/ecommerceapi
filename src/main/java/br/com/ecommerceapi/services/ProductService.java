@@ -2,6 +2,7 @@ package br.com.ecommerceapi.services;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,10 +40,40 @@ public class ProductService {
 			return productRepository.save(product);
 			
 		} catch (Exception e) {
+			System.out.println("Error while savin product  " +  e.getCause().toString());
+			throw e;
+		}
+	}
+
+	public void removeProductById(Integer productId) {
+		try {
+			// first of all, we must  find a product by id 
+			Product product = this.getProductById(productId);
+			productRepository.delete(product);
+			
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			throw e;
+		}
+		
+	}
+
+	private Product getProductById(Integer productId) {
+		
+		try {
+			
+			Optional<Product> productOptional = productRepository.findById(productId);
+			Product product = productOptional.get();
+			return product;
+			
+		} catch (Exception e) {
 			// TODO: handle exception
 			throw e;
 		}
 	}
+	
+	
 	
 	
 	
