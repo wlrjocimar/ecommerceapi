@@ -9,6 +9,10 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
 
+    env:
+      DB_URL: ${{ secrets.DB_URL }}
+      DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+
     steps:
       # 1️⃣ Clona o repositório
       - name: Checkout code
