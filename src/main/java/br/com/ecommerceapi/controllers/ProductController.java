@@ -59,7 +59,7 @@ public class ProductController {
 	
 	
 	
-	@DeleteMapping
+	@DeleteMapping("/{productId}")
 	public ResponseEntity<HttpStatus> removeProduct(@PathVariable Integer productId){
 		
 		productService.removeProductById(productId);
