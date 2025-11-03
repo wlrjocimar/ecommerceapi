@@ -28,7 +28,7 @@ public class ItemCart {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	@OneToOne(cascade =CascadeType.REFRESH)
+	@ManyToOne(cascade =CascadeType.REFRESH)
 	@JoinColumn(name="product_id",referencedColumnName = "id")
 	private Product product;
 	
@@ -40,7 +40,7 @@ public class ItemCart {
 	private String selectedColor;
 	
 	@JsonIgnore
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.REFRESH)
 	@JoinColumn(name = "cart_id",referencedColumnName = "id")
 	private Cart cart;
 	
