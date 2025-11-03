@@ -28,7 +28,7 @@ public class ItemCart {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	@JsonIgnore
+	
 	@OneToOne(cascade =CascadeType.REFRESH)
 	@JoinColumn(name="product_id",referencedColumnName = "id")
 	private Product product;
