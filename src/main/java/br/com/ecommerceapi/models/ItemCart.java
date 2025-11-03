@@ -40,6 +40,7 @@ public class ItemCart {
 	@Column(name = "selected_color")
 	private String selectedColor;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "cart_id",referencedColumnName = "id")
 	private Cart cart;
