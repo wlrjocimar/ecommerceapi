@@ -59,7 +59,7 @@ public class ProductService {
 		
 	}
 
-	private Product getProductById(Integer productId) {
+	public Product getProductById(Integer productId) {
 		
 		try {
 			
