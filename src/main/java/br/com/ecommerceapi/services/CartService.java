@@ -27,7 +27,7 @@ public class CartService {
 	private ProductService productService;
 	
 
-	public Cart getCart(Integer id) {
+	public Cart getCartById(Integer id) {
 		
 		Optional<Cart> cart = cartRepository.findById(id);
 		
@@ -74,6 +74,9 @@ public class CartService {
 		}
 		
 	}
+
+
+	
 	
 	
 	

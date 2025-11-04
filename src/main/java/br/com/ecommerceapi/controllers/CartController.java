@@ -29,7 +29,7 @@ public class CartController {
 	@GetMapping("/{id}")
 	public ResponseEntity<Cart> getCart(@PathVariable Integer id){
 		
-		Cart cart = cartService.getCart(id);
+		Cart cart = cartService.getCartById(id);
 		
 		return ResponseEntity.ok().body(cart);
 		
@@ -52,6 +52,9 @@ public class CartController {
 		return ResponseEntity.created(location).body(savedCart);
 		
 	}
+	
+	
+	
 	
 
 }
